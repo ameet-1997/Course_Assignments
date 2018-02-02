@@ -1,0 +1,86 @@
+
+Options: -M 87 
+
+J48 pruned tree
+------------------
+
+odor = p: p (256.0)
+odor = a: e (400.0)
+odor = l: e (400.0)
+odor = n
+|   Stalk-shape = e
+|   |   habitat = u: e (96.0)
+|   |   habitat = g: e (77.0/36.0)
+|   |   habitat = m: p (36.0)
+|   |   habitat = d: e (82.0/32.0)
+|   |   habitat = p: e (5.0)
+|   |   habitat = w: e (192.0)
+|   |   habitat = l: e (73.0/9.0)
+|   Stalk-shape = t: e (2496.0)
+odor = f: p (1952.0)
+odor = c: p (192.0)
+odor = y: p (379.0)
+odor = s: p (359.0)
+odor = m: p (5.0)
+
+Number of Leaves  : 	16
+
+Size of the tree : 	19
+
+
+Time taken to build model: 0.17 seconds
+Time taken to test model on training data: 0.04 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        6923               98.9    %
+Incorrectly Classified Instances        77                1.1    %
+Kappa statistic                          0.9779
+Mean absolute error                      0.0133
+Root mean squared error                  0.0816
+Relative absolute error                  2.6742 %
+Root relative squared error             16.353  %
+Total Number of Instances             7000     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.976    0.000    1.000      0.976    0.988      0.978    1.000     0.999     p
+                 1.000    0.024    0.980      1.000    0.990      0.978    1.000     1.000     e
+Weighted Avg.    0.989    0.013    0.989      0.989    0.989      0.978    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 3179   77 |    a = p
+    0 3744 |    b = e
+
+
+=== Error on test data ===
+
+Correctly Classified Instances        1117               99.3772 %
+Incorrectly Classified Instances         7                0.6228 %
+Kappa statistic                          0.9872
+Mean absolute error                      0.1296
+Root mean squared error                  0.2367
+Relative absolute error                 25.6065 %
+Root relative squared error             46.6592 %
+Total Number of Instances             1124     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.989    0.000    1.000      0.989    0.995      0.987    0.992     0.996     p
+                 1.000    0.011    0.985      1.000    0.993      0.987    0.992     0.980     e
+Weighted Avg.    0.994    0.004    0.994      0.994    0.994      0.987    0.992     0.989     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 653   7 |   a = p
+   0 464 |   b = e
+

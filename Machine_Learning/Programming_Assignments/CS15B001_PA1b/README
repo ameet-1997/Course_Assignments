@@ -1,0 +1,36 @@
+-----------------------------
+The README file gives the overall structure of the directories
+
+CS15B001_PA1b
+	Code
+		q7
+			Data Folder 	// Contains all the data that was used
+				forest
+				insidecity
+				mountain
+				coast
+			data_processing.py 				// Original File from Professor Boyd
+			data_processing_my_version.py	// Modified version for Logistic Regression
+			data_processing_neuralnets.py 	// Modified version for Question 8
+			DS2-test.csv 					// Test set for the Logistic
+			DS2-train.csv					// Train set for the Logistic
+			l1_logreg-0.8.2-i686-pc-linux-gnu 		// Binaries of Professor Boyd's Code
+			model 									// Logistics Model with coeffs(Boyd)
+			result 									// Result for the logistic
+			Test_features 					// Test data for Boyd's code		
+			Test_labels						// Test labels for Boyd's code
+			Train_features					// Train data for Boyd's code
+			Train_labels 					// Train labels for Boyd's code
+			run.py
+		q2
+			DS2-test.csv 		// Test Dataset created
+			DS2-train.csv 		// Train Dataset created
+			functions.py 		// Classes and function used for Neural Network Training
+			functions.pyc 		// Compiled file
+			run.py
+
+	Dataset
+			DS2-test.csv
+			DS2-train.csv
+	CS15B001-report.pdf
+	README 

@@ -1,0 +1,26 @@
+The following is the directory structure. Key folders are listed
+
+CS15B001_PA2
+	Dataset
+		DS2
+		DS3
+		iris
+		mushroom
+	Code
+		q1
+			run.py
+		q2
+			run.py
+		q3
+			run.py
+			rda.py 		: Contains class to use RDA
+		q4
+			run.py
+			Models 		: Contains all 4 kernel models
+		q5
+			run.py
+			weka-3-8-1	: Required for CLI commands to work
+			ARFFFiles	: Contains relevant .arff files
+			CSVFiles	: Contains relevant .csv files
+	CS15B001-report.pdf
+	README

@@ -1,0 +1,6 @@
+Subsample - Set at about 0.8
+Learning Rate around 0.1
+Number of trees 40-70
+Lower the learning rate and increase the estimators proportionally to get more robust models.
+min_sample_split 1% of the data
+The learning rate and the number of estimators are kind of inversely proportional

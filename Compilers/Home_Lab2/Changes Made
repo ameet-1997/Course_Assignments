@@ -1,0 +1,37 @@
+Part1:
+
+Created Class for table
+Created field Alltables
+Make identifier return the name
+Create symbol table for Main class and add to global table
+Only one class to be used for all types of tables
+Create symbol table for class and inherited class
+Symbol table for variable declaration
+Make types other than identifier return strings
+Symbol table for function calls
+Link the function table to the parent class table
+Add field called current name to know which class or function we are in
+Done with symbol table
+Check if duplicate classes exist
+Duplicate Variable declarations
+Duplicate Function declarations
+
+Part2:
+
+Created a new copy of the visitor
+Check if parent class is defined in extend class
+Check if class extends itself
+Typechecking in assignment statements
+Expressions
+	And Expression
+	Or Expression
+	Compare Expression
+	Plus, Minus, Mul, Divide expressions
+Type checking simple assignment statements
+Added function to check if two types are compatible
+Type check simple array assignment statements
+Handles circular definitions of classes
+Handles assignment statements where one type is derived from another
+Checks overriding in classes
+Check function signatures when calls are made
+Change made in linkedlist comparison function

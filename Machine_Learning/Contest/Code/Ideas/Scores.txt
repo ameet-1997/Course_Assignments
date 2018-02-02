@@ -1,0 +1,50 @@
+After analysis, PCA with 200 components works the best
+
+- Logistic Regression: 0.24
+- Logistic Regression with Bagging: 0.277 (50 estimators)
+- SVM with linear kernel: 0.262
+- SVM with poly kernel: 0.24
+- SVM with rbf kernel: 0.388 with C=7,8,9. C value of 8 seemed to do better
+- SVM with Bagging, rbf kernel: 0.393 (50 estimators) Note: See that Bagging only changed the score by about 0.05.
+- Gaussian NaiveBayes: 0.22
+- Gaussian Process: 0.24
+- KNearest Neighbours: 0.22
+- Boosting with SVM gives 0.255 on validation set and 0.31 on training set. Should use a less complex classifier like decision stump?
+
+- Cross Validation with train data for C values between 6 - 10 gave 10 as the best C value
+
+
+Imputations: (Using SVM Model)
+- Mean Imputation: 0.36
+- KNN:		 0.9645 Train error with bagging. Gives an improvement of 0.05 as compared to Mean Imputation. 0.39885
+- SoftImpute:		0.35977 Score (Soft Impute and mean are giving almost the same scores)
+- MICE: 	
+
+
+- Some kinds of Class Conditioned Techniques need to be used
+- What about doing Class Conditioned on Train Data and then using KNN on Test data, as KNN seems to be doing well.
+- Only some of the columns have missing data. Why not do a PCA first on columns that have full data and then do an Imputation. 
+  This way, we are reducing the dimensionality of the data which will be helpful in KNN imputation.
+
+- PCA 210 features seems to do well. C = 7 better for 210 features
+- PCA 150 features gave 0.41 validation score for C = 7
+- The value seems to be varying highly with different runs. Maybe the seed is causing the issue
+- Train Score: 0.969728787971
+  Total time: 48.7137081623
+  C: 9.66666666667::Components: 180
+  Validation Score: 0.39920324609			Best validation score
+  C values 9 - 9.6 seem to be doing very well
+
+
+- Learning rate of 0.1 is good. 0.4 doesnt converge
+- Gradient Boosted Trees, default values and n_estimators=50 gave 0.27 validation score
+- Increasing the estimators does not change the validation error, only improves the training error.
+- For 200 estimators, 0.283 is the validation score. Need to tune the decision tree. 0.99 train score (Overfitting)
+- 50 estimators and 3 max_depth - 0.30 on validation
+- {'max_depth': 4, 'min_samples_leaf': 82}
+  Validation Score: 0.305838397285
+- Larger GridSearch also produced scored of around 0.30 with just GBT
+
+
+- XGBoost 0.353 with 200 estimators and 0.2 learning rate and 6 as the max depth
+- XGBoost 0.357 with 500 estimators and 0.2 learning rate, 6 as max depth

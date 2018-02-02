@@ -1,0 +1,16 @@
+class A extends A - Typeerror and not Symbol not found
+No duplicate class definitions
+No function overloading possible
+Check if cycles exist in class inheritance
+In assignment statements l value can be a base type and r value can be a derived type
+Variable defined in function local scope should not clash with argument of the function
+In function overriding, the function parameters have to exactly match the parameters of parent function, but return type can be a derived class
+Function name and field name should not be the same (Add in the first file)
+	Add a recursive way of seeing if symbol already exists in the table
+	Check in all_tables if the identifier exists
+	Check all functions of inherited classes
+
+No two argument names in functions should match
+Identifier in function should not have same name as an argument
+Check if return type inside the function body matched the declared return type
+Function calls with this parent working

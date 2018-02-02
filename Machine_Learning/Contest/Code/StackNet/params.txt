@@ -1,0 +1,4 @@
+SklearnMLPClassifier standardize:false use_log1p:true shuffle:true learning_rate:adaptive momentum:0.9 optimizer:sgd use_dense:true alpha:0.000001 hidden:150, activation:relu epsilon:0.00000001 max_iter:1000 batch_size:8 tol:0.0001 validation_split:0.1 seed:1 verbose:false learning_rate:adaptive
+SklearnMLPClassifier standardize:false use_log1p:true shuffle:true learning_rate:adaptive momentum:0.9 optimizer:sgd use_dense:true alpha:0.000001 hidden:150, activation:relu epsilon:0.00000001 max_iter:1000 batch_size:8 tol:0.0001 validation_split:0.1 seed:1 verbose:false learning_rate:adaptive
+
+SklearnMLPClassifier standardize:false use_log1p:true shuffle:true learning_rate:adaptive momentum:0.9 optimizer:sgd use_dense:true alpha:0.000001 hidden:150, activation:relu epsilon:0.00000001 max_iter:1000 batch_size:8 tol:0.0001 validation_split:0.1 seed:1 verbose:false learning_rate:adaptive

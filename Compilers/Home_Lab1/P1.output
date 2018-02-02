@@ -1,0 +1,2180 @@
+Terminals unused in grammar
+
+   GT
+
+
+State 42 conflicts: 11 shift/reduce
+State 159 conflicts: 6 shift/reduce
+State 160 conflicts: 5 shift/reduce
+State 174 conflicts: 5 shift/reduce
+State 176 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: goal $end
+
+    1 goal: program
+
+    2 program: macros mainclass types
+
+    3 macros: %empty
+    4       | macros macrodefinition
+
+    5 types: typedeclaration types
+    6      | %empty
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    8 typedeclaration: CLASS Identifier L_CURLY classtypes methods R_CURLY
+    9                | CLASS Identifier EXTENDS Identifier L_CURLY classtypes methods R_CURLY
+
+   10 classtypes: %empty
+   11           | classtypes type Identifier SEMICOLON
+
+   12 methods: methoddeclaration methods
+   13        | %empty
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+   15 method_arguments: type Identifier argument_list
+   16                 | %empty
+
+   17 argument_list: COMMA type Identifier argument_list
+   18              | %empty
+
+   19 statement_list: statement_list statement
+   20               | %empty
+
+   21 type: INTEGER L_SQUARE R_SQUARE
+   22     | BOOLEAN
+   23     | INTEGER
+   24     | Identifier
+
+   25 statement: L_CURLY statement_list R_CURLY
+   26          | SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON
+   27          | Identifier EQUALS expression SEMICOLON
+   28          | Identifier L_SQUARE expression R_SQUARE EQUALS expression SEMICOLON
+   29          | IF L_PAREN expression R_PAREN statement_list
+   30          | IF L_PAREN expression R_PAREN statement_list ELSE statement_list
+   31          | WHILE L_PAREN expression R_PAREN statement_list
+   32          | Identifier L_PAREN expression expression_comma R_PAREN SEMICOLON
+   33          | Identifier L_PAREN R_PAREN SEMICOLON
+
+   34 expression_comma: COMMA expression expression_comma
+   35                 | %empty
+
+   36 expression: primaryexpression AND primaryexpression
+   37           | primaryexpression OR primaryexpression
+   38           | primaryexpression NE primaryexpression
+   39           | primaryexpression LT EQUALS primaryexpression
+   40           | primaryexpression PLUS primaryexpression
+   41           | primaryexpression MINUS primaryexpression
+   42           | primaryexpression MUL primaryexpression
+   43           | primaryexpression DIV primaryexpression
+   44           | primaryexpression L_SQUARE primaryexpression R_SQUARE
+   45           | primaryexpression LENGTH
+   46           | primaryexpression
+   47           | primaryexpression DOT Identifier L_PAREN expression expression_comma R_PAREN
+   48           | primaryexpression DOT Identifier L_PAREN R_PAREN
+   49           | Identifier L_PAREN expression expression_comma R_PAREN
+   50           | Identifier L_PAREN R_PAREN
+
+   51 primaryexpression: number
+   52                  | TRUE
+   53                  | FALSE
+   54                  | Identifier
+   55                  | THIS
+   56                  | NEW INTEGER L_SQUARE expression R_SQUARE
+   57                  | NEW Identifier L_PAREN R_PAREN
+   58                  | NOT expression
+   59                  | L_PAREN expression R_PAREN
+
+   60 macrodefinition: macrodefexpression
+   61                | macrodefstatement
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_CURLY statement_list R_CURLY
+   63                  | DEFINE Identifier L_PAREN R_PAREN L_CURLY statement_list R_CURLY
+
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_PAREN expression R_PAREN
+   65                   | DEFINE Identifier L_PAREN R_PAREN L_PAREN expression R_PAREN
+
+   66 Identifier_comma: COMMA Identifier Identifier_comma
+   67                 | %empty
+
+   68 Identifier: ID
+
+   69 number: NUM
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+SEMICOLON (258) 7 11 14 26 27 28 32 33
+CLASS (259) 7 8 9
+PUBLIC (260) 7 14
+STATIC (261) 7
+VOID (262) 7
+MAIN (263) 7
+STRING (264) 7
+EXTENDS (265) 9
+SYSTEM_PRINT (266) 7 26
+RETURN (267) 14
+INTEGER (268) 21 23 56
+BOOLEAN (269) 22
+IF (270) 29 30
+ELSE (271) 30
+WHILE (272) 31
+LENGTH (273) 45
+AND (274) 36
+OR (275) 37
+EQUALS (276) 27 28 39
+NE (277) 38
+LT (278) 39
+GT (279)
+NOT (280) 58
+PLUS (281) 40
+MINUS (282) 41
+MUL (283) 42
+DIV (284) 43
+DOT (285) 47 48
+COMMA (286) 17 34 66
+TRUE (287) 52
+FALSE (288) 53
+THIS (289) 55
+NEW (290) 56 57
+DEFINE (291) 62 63 64 65
+ID (292) 68
+NUM (293) 69
+L_PAREN (294) 7 14 26 29 30 31 32 33 47 48 49 50 57 59 62 63 64 65
+R_PAREN (295) 7 14 26 29 30 31 32 33 47 48 49 50 57 59 62 63 64 65
+L_CURLY (296) 7 8 9 14 25 62 63
+R_CURLY (297) 7 8 9 14 25 62 63
+L_SQUARE (298) 7 21 28 44 56
+R_SQUARE (299) 7 21 28 44 56
+
+
+Nonterminals, with rules where they appear
+
+$accept (45)
+    on left: 0
+goal (46)
+    on left: 1, on right: 0
+program (47)
+    on left: 2, on right: 1
+macros (48)
+    on left: 3 4, on right: 2 4
+types (49)
+    on left: 5 6, on right: 2 5
+mainclass (50)
+    on left: 7, on right: 2
+typedeclaration (51)
+    on left: 8 9, on right: 5
+classtypes (52)
+    on left: 10 11, on right: 8 9 11 14
+methods (53)
+    on left: 12 13, on right: 8 9 12
+methoddeclaration (54)
+    on left: 14, on right: 12
+method_arguments (55)
+    on left: 15 16, on right: 14
+argument_list (56)
+    on left: 17 18, on right: 15 17
+statement_list (57)
+    on left: 19 20, on right: 14 19 25 29 30 31 62 63
+type (58)
+    on left: 21 22 23 24, on right: 11 14 15 17
+statement (59)
+    on left: 25 26 27 28 29 30 31 32 33, on right: 19
+expression_comma (60)
+    on left: 34 35, on right: 32 34 47 49
+expression (61)
+    on left: 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50, on right:
+    7 14 26 27 28 29 30 31 32 34 47 49 56 58 59 64 65
+primaryexpression (62)
+    on left: 51 52 53 54 55 56 57 58 59, on right: 36 37 38 39 40 41
+    42 43 44 45 46 47 48
+macrodefinition (63)
+    on left: 60 61, on right: 4
+macrodefstatement (64)
+    on left: 62 63, on right: 61
+macrodefexpression (65)
+    on left: 64 65, on right: 60
+Identifier_comma (66)
+    on left: 66 67, on right: 62 64 66
+Identifier (67)
+    on left: 68, on right: 7 8 9 11 14 15 17 24 27 28 32 33 47 48 49
+    50 54 57 62 63 64 65 66
+number (68)
+    on left: 69, on right: 51
+
+
+State 0
+
+    0 $accept: . goal $end
+
+    $default  reduce using rule 3 (macros)
+
+    goal     go to state 1
+    program  go to state 2
+    macros   go to state 3
+
+
+State 1
+
+    0 $accept: goal . $end
+
+    $end  shift, and go to state 4
+
+
+State 2
+
+    1 goal: program .
+
+    $default  reduce using rule 1 (goal)
+
+
+State 3
+
+    2 program: macros . mainclass types
+    4 macros: macros . macrodefinition
+
+    CLASS   shift, and go to state 5
+    DEFINE  shift, and go to state 6
+
+    mainclass           go to state 7
+    macrodefinition     go to state 8
+    macrodefstatement   go to state 9
+    macrodefexpression  go to state 10
+
+
+State 4
+
+    0 $accept: goal $end .
+
+    $default  accept
+
+
+State 5
+
+    7 mainclass: CLASS . Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 12
+
+
+State 6
+
+   62 macrodefstatement: DEFINE . Identifier L_PAREN Identifier Identifier_comma R_PAREN L_CURLY statement_list R_CURLY
+   63                  | DEFINE . Identifier L_PAREN R_PAREN L_CURLY statement_list R_CURLY
+   64 macrodefexpression: DEFINE . Identifier L_PAREN Identifier Identifier_comma R_PAREN L_PAREN expression R_PAREN
+   65                   | DEFINE . Identifier L_PAREN R_PAREN L_PAREN expression R_PAREN
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 13
+
+
+State 7
+
+    2 program: macros mainclass . types
+
+    CLASS  shift, and go to state 14
+
+    $default  reduce using rule 6 (types)
+
+    types            go to state 15
+    typedeclaration  go to state 16
+
+
+State 8
+
+    4 macros: macros macrodefinition .
+
+    $default  reduce using rule 4 (macros)
+
+
+State 9
+
+   61 macrodefinition: macrodefstatement .
+
+    $default  reduce using rule 61 (macrodefinition)
+
+
+State 10
+
+   60 macrodefinition: macrodefexpression .
+
+    $default  reduce using rule 60 (macrodefinition)
+
+
+State 11
+
+   68 Identifier: ID .
+
+    $default  reduce using rule 68 (Identifier)
+
+
+State 12
+
+    7 mainclass: CLASS Identifier . L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    L_CURLY  shift, and go to state 17
+
+
+State 13
+
+   62 macrodefstatement: DEFINE Identifier . L_PAREN Identifier Identifier_comma R_PAREN L_CURLY statement_list R_CURLY
+   63                  | DEFINE Identifier . L_PAREN R_PAREN L_CURLY statement_list R_CURLY
+   64 macrodefexpression: DEFINE Identifier . L_PAREN Identifier Identifier_comma R_PAREN L_PAREN expression R_PAREN
+   65                   | DEFINE Identifier . L_PAREN R_PAREN L_PAREN expression R_PAREN
+
+    L_PAREN  shift, and go to state 18
+
+
+State 14
+
+    8 typedeclaration: CLASS . Identifier L_CURLY classtypes methods R_CURLY
+    9                | CLASS . Identifier EXTENDS Identifier L_CURLY classtypes methods R_CURLY
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 19
+
+
+State 15
+
+    2 program: macros mainclass types .
+
+    $default  reduce using rule 2 (program)
+
+
+State 16
+
+    5 types: typedeclaration . types
+
+    CLASS  shift, and go to state 14
+
+    $default  reduce using rule 6 (types)
+
+    types            go to state 20
+    typedeclaration  go to state 16
+
+
+State 17
+
+    7 mainclass: CLASS Identifier L_CURLY . PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    PUBLIC  shift, and go to state 21
+
+
+State 18
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN . Identifier Identifier_comma R_PAREN L_CURLY statement_list R_CURLY
+   63                  | DEFINE Identifier L_PAREN . R_PAREN L_CURLY statement_list R_CURLY
+   64 macrodefexpression: DEFINE Identifier L_PAREN . Identifier Identifier_comma R_PAREN L_PAREN expression R_PAREN
+   65                   | DEFINE Identifier L_PAREN . R_PAREN L_PAREN expression R_PAREN
+
+    ID       shift, and go to state 11
+    R_PAREN  shift, and go to state 22
+
+    Identifier  go to state 23
+
+
+State 19
+
+    8 typedeclaration: CLASS Identifier . L_CURLY classtypes methods R_CURLY
+    9                | CLASS Identifier . EXTENDS Identifier L_CURLY classtypes methods R_CURLY
+
+    EXTENDS  shift, and go to state 24
+    L_CURLY  shift, and go to state 25
+
+
+State 20
+
+    5 types: typedeclaration types .
+
+    $default  reduce using rule 5 (types)
+
+
+State 21
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC . STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    STATIC  shift, and go to state 26
+
+
+State 22
+
+   63 macrodefstatement: DEFINE Identifier L_PAREN R_PAREN . L_CURLY statement_list R_CURLY
+   65 macrodefexpression: DEFINE Identifier L_PAREN R_PAREN . L_PAREN expression R_PAREN
+
+    L_PAREN  shift, and go to state 27
+    L_CURLY  shift, and go to state 28
+
+
+State 23
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier . Identifier_comma R_PAREN L_CURLY statement_list R_CURLY
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier . Identifier_comma R_PAREN L_PAREN expression R_PAREN
+
+    COMMA  shift, and go to state 29
+
+    $default  reduce using rule 67 (Identifier_comma)
+
+    Identifier_comma  go to state 30
+
+
+State 24
+
+    9 typedeclaration: CLASS Identifier EXTENDS . Identifier L_CURLY classtypes methods R_CURLY
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 31
+
+
+State 25
+
+    8 typedeclaration: CLASS Identifier L_CURLY . classtypes methods R_CURLY
+
+    $default  reduce using rule 10 (classtypes)
+
+    classtypes  go to state 32
+
+
+State 26
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC . VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    VOID  shift, and go to state 33
+
+
+State 27
+
+   65 macrodefexpression: DEFINE Identifier L_PAREN R_PAREN L_PAREN . expression R_PAREN
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 41
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 28
+
+   63 macrodefstatement: DEFINE Identifier L_PAREN R_PAREN L_CURLY . statement_list R_CURLY
+
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 45
+
+
+State 29
+
+   66 Identifier_comma: COMMA . Identifier Identifier_comma
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 46
+
+
+State 30
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier Identifier_comma . R_PAREN L_CURLY statement_list R_CURLY
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier Identifier_comma . R_PAREN L_PAREN expression R_PAREN
+
+    R_PAREN  shift, and go to state 47
+
+
+State 31
+
+    9 typedeclaration: CLASS Identifier EXTENDS Identifier . L_CURLY classtypes methods R_CURLY
+
+    L_CURLY  shift, and go to state 48
+
+
+State 32
+
+    8 typedeclaration: CLASS Identifier L_CURLY classtypes . methods R_CURLY
+   11 classtypes: classtypes . type Identifier SEMICOLON
+
+    PUBLIC   shift, and go to state 49
+    INTEGER  shift, and go to state 50
+    BOOLEAN  shift, and go to state 51
+    ID       shift, and go to state 11
+
+    $default  reduce using rule 13 (methods)
+
+    methods            go to state 52
+    methoddeclaration  go to state 53
+    type               go to state 54
+    Identifier         go to state 55
+
+
+State 33
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID . MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    MAIN  shift, and go to state 56
+
+
+State 34
+
+   58 primaryexpression: NOT . expression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 57
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 35
+
+   52 primaryexpression: TRUE .
+
+    $default  reduce using rule 52 (primaryexpression)
+
+
+State 36
+
+   53 primaryexpression: FALSE .
+
+    $default  reduce using rule 53 (primaryexpression)
+
+
+State 37
+
+   55 primaryexpression: THIS .
+
+    $default  reduce using rule 55 (primaryexpression)
+
+
+State 38
+
+   56 primaryexpression: NEW . INTEGER L_SQUARE expression R_SQUARE
+   57                  | NEW . Identifier L_PAREN R_PAREN
+
+    INTEGER  shift, and go to state 58
+    ID       shift, and go to state 11
+
+    Identifier  go to state 59
+
+
+State 39
+
+   69 number: NUM .
+
+    $default  reduce using rule 69 (number)
+
+
+State 40
+
+   59 primaryexpression: L_PAREN . expression R_PAREN
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 60
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 41
+
+   65 macrodefexpression: DEFINE Identifier L_PAREN R_PAREN L_PAREN expression . R_PAREN
+
+    R_PAREN  shift, and go to state 61
+
+
+State 42
+
+   36 expression: primaryexpression . AND primaryexpression
+   37           | primaryexpression . OR primaryexpression
+   38           | primaryexpression . NE primaryexpression
+   39           | primaryexpression . LT EQUALS primaryexpression
+   40           | primaryexpression . PLUS primaryexpression
+   41           | primaryexpression . MINUS primaryexpression
+   42           | primaryexpression . MUL primaryexpression
+   43           | primaryexpression . DIV primaryexpression
+   44           | primaryexpression . L_SQUARE primaryexpression R_SQUARE
+   45           | primaryexpression . LENGTH
+   46           | primaryexpression .
+   47           | primaryexpression . DOT Identifier L_PAREN expression expression_comma R_PAREN
+   48           | primaryexpression . DOT Identifier L_PAREN R_PAREN
+
+    LENGTH    shift, and go to state 62
+    AND       shift, and go to state 63
+    OR        shift, and go to state 64
+    NE        shift, and go to state 65
+    LT        shift, and go to state 66
+    PLUS      shift, and go to state 67
+    MINUS     shift, and go to state 68
+    MUL       shift, and go to state 69
+    DIV       shift, and go to state 70
+    DOT       shift, and go to state 71
+    L_SQUARE  shift, and go to state 72
+
+    LENGTH    [reduce using rule 46 (expression)]
+    AND       [reduce using rule 46 (expression)]
+    OR        [reduce using rule 46 (expression)]
+    NE        [reduce using rule 46 (expression)]
+    LT        [reduce using rule 46 (expression)]
+    PLUS      [reduce using rule 46 (expression)]
+    MINUS     [reduce using rule 46 (expression)]
+    MUL       [reduce using rule 46 (expression)]
+    DIV       [reduce using rule 46 (expression)]
+    DOT       [reduce using rule 46 (expression)]
+    L_SQUARE  [reduce using rule 46 (expression)]
+    $default  reduce using rule 46 (expression)
+
+
+State 43
+
+   49 expression: Identifier . L_PAREN expression expression_comma R_PAREN
+   50           | Identifier . L_PAREN R_PAREN
+   54 primaryexpression: Identifier .
+
+    L_PAREN  shift, and go to state 73
+
+    $default  reduce using rule 54 (primaryexpression)
+
+
+State 44
+
+   51 primaryexpression: number .
+
+    $default  reduce using rule 51 (primaryexpression)
+
+
+State 45
+
+   19 statement_list: statement_list . statement
+   63 macrodefstatement: DEFINE Identifier L_PAREN R_PAREN L_CURLY statement_list . R_CURLY
+
+    SYSTEM_PRINT  shift, and go to state 74
+    IF            shift, and go to state 75
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+    R_CURLY       shift, and go to state 78
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 46
+
+   66 Identifier_comma: COMMA Identifier . Identifier_comma
+
+    COMMA  shift, and go to state 29
+
+    $default  reduce using rule 67 (Identifier_comma)
+
+    Identifier_comma  go to state 81
+
+
+State 47
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN . L_CURLY statement_list R_CURLY
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN . L_PAREN expression R_PAREN
+
+    L_PAREN  shift, and go to state 82
+    L_CURLY  shift, and go to state 83
+
+
+State 48
+
+    9 typedeclaration: CLASS Identifier EXTENDS Identifier L_CURLY . classtypes methods R_CURLY
+
+    $default  reduce using rule 10 (classtypes)
+
+    classtypes  go to state 84
+
+
+State 49
+
+   14 methoddeclaration: PUBLIC . type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    INTEGER  shift, and go to state 50
+    BOOLEAN  shift, and go to state 51
+    ID       shift, and go to state 11
+
+    type        go to state 85
+    Identifier  go to state 55
+
+
+State 50
+
+   21 type: INTEGER . L_SQUARE R_SQUARE
+   23     | INTEGER .
+
+    L_SQUARE  shift, and go to state 86
+
+    $default  reduce using rule 23 (type)
+
+
+State 51
+
+   22 type: BOOLEAN .
+
+    $default  reduce using rule 22 (type)
+
+
+State 52
+
+    8 typedeclaration: CLASS Identifier L_CURLY classtypes methods . R_CURLY
+
+    R_CURLY  shift, and go to state 87
+
+
+State 53
+
+   12 methods: methoddeclaration . methods
+
+    PUBLIC  shift, and go to state 49
+
+    $default  reduce using rule 13 (methods)
+
+    methods            go to state 88
+    methoddeclaration  go to state 53
+
+
+State 54
+
+   11 classtypes: classtypes type . Identifier SEMICOLON
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 89
+
+
+State 55
+
+   24 type: Identifier .
+
+    $default  reduce using rule 24 (type)
+
+
+State 56
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN . L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    L_PAREN  shift, and go to state 90
+
+
+State 57
+
+   58 primaryexpression: NOT expression .
+
+    $default  reduce using rule 58 (primaryexpression)
+
+
+State 58
+
+   56 primaryexpression: NEW INTEGER . L_SQUARE expression R_SQUARE
+
+    L_SQUARE  shift, and go to state 91
+
+
+State 59
+
+   57 primaryexpression: NEW Identifier . L_PAREN R_PAREN
+
+    L_PAREN  shift, and go to state 92
+
+
+State 60
+
+   59 primaryexpression: L_PAREN expression . R_PAREN
+
+    R_PAREN  shift, and go to state 93
+
+
+State 61
+
+   65 macrodefexpression: DEFINE Identifier L_PAREN R_PAREN L_PAREN expression R_PAREN .
+
+    $default  reduce using rule 65 (macrodefexpression)
+
+
+State 62
+
+   45 expression: primaryexpression LENGTH .
+
+    $default  reduce using rule 45 (expression)
+
+
+State 63
+
+   36 expression: primaryexpression AND . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 94
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 64
+
+   37 expression: primaryexpression OR . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 96
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 65
+
+   38 expression: primaryexpression NE . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 97
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 66
+
+   39 expression: primaryexpression LT . EQUALS primaryexpression
+
+    EQUALS  shift, and go to state 98
+
+
+State 67
+
+   40 expression: primaryexpression PLUS . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 99
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 68
+
+   41 expression: primaryexpression MINUS . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 100
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 69
+
+   42 expression: primaryexpression MUL . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 101
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 70
+
+   43 expression: primaryexpression DIV . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 102
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 71
+
+   47 expression: primaryexpression DOT . Identifier L_PAREN expression expression_comma R_PAREN
+   48           | primaryexpression DOT . Identifier L_PAREN R_PAREN
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 103
+
+
+State 72
+
+   44 expression: primaryexpression L_SQUARE . primaryexpression R_SQUARE
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 104
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 73
+
+   49 expression: Identifier L_PAREN . expression expression_comma R_PAREN
+   50           | Identifier L_PAREN . R_PAREN
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+    R_PAREN  shift, and go to state 105
+
+    expression         go to state 106
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 74
+
+   26 statement: SYSTEM_PRINT . L_PAREN expression R_PAREN SEMICOLON
+
+    L_PAREN  shift, and go to state 107
+
+
+State 75
+
+   29 statement: IF . L_PAREN expression R_PAREN statement_list
+   30          | IF . L_PAREN expression R_PAREN statement_list ELSE statement_list
+
+    L_PAREN  shift, and go to state 108
+
+
+State 76
+
+   31 statement: WHILE . L_PAREN expression R_PAREN statement_list
+
+    L_PAREN  shift, and go to state 109
+
+
+State 77
+
+   25 statement: L_CURLY . statement_list R_CURLY
+
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 110
+
+
+State 78
+
+   63 macrodefstatement: DEFINE Identifier L_PAREN R_PAREN L_CURLY statement_list R_CURLY .
+
+    $default  reduce using rule 63 (macrodefstatement)
+
+
+State 79
+
+   19 statement_list: statement_list statement .
+
+    $default  reduce using rule 19 (statement_list)
+
+
+State 80
+
+   27 statement: Identifier . EQUALS expression SEMICOLON
+   28          | Identifier . L_SQUARE expression R_SQUARE EQUALS expression SEMICOLON
+   32          | Identifier . L_PAREN expression expression_comma R_PAREN SEMICOLON
+   33          | Identifier . L_PAREN R_PAREN SEMICOLON
+
+    EQUALS    shift, and go to state 111
+    L_PAREN   shift, and go to state 112
+    L_SQUARE  shift, and go to state 113
+
+
+State 81
+
+   66 Identifier_comma: COMMA Identifier Identifier_comma .
+
+    $default  reduce using rule 66 (Identifier_comma)
+
+
+State 82
+
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_PAREN . expression R_PAREN
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 114
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 83
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_CURLY . statement_list R_CURLY
+
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 115
+
+
+State 84
+
+    9 typedeclaration: CLASS Identifier EXTENDS Identifier L_CURLY classtypes . methods R_CURLY
+   11 classtypes: classtypes . type Identifier SEMICOLON
+
+    PUBLIC   shift, and go to state 49
+    INTEGER  shift, and go to state 50
+    BOOLEAN  shift, and go to state 51
+    ID       shift, and go to state 11
+
+    $default  reduce using rule 13 (methods)
+
+    methods            go to state 116
+    methoddeclaration  go to state 53
+    type               go to state 54
+    Identifier         go to state 55
+
+
+State 85
+
+   14 methoddeclaration: PUBLIC type . Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 117
+
+
+State 86
+
+   21 type: INTEGER L_SQUARE . R_SQUARE
+
+    R_SQUARE  shift, and go to state 118
+
+
+State 87
+
+    8 typedeclaration: CLASS Identifier L_CURLY classtypes methods R_CURLY .
+
+    $default  reduce using rule 8 (typedeclaration)
+
+
+State 88
+
+   12 methods: methoddeclaration methods .
+
+    $default  reduce using rule 12 (methods)
+
+
+State 89
+
+   11 classtypes: classtypes type Identifier . SEMICOLON
+
+    SEMICOLON  shift, and go to state 119
+
+
+State 90
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN . STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    STRING  shift, and go to state 120
+
+
+State 91
+
+   56 primaryexpression: NEW INTEGER L_SQUARE . expression R_SQUARE
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 121
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 92
+
+   57 primaryexpression: NEW Identifier L_PAREN . R_PAREN
+
+    R_PAREN  shift, and go to state 122
+
+
+State 93
+
+   59 primaryexpression: L_PAREN expression R_PAREN .
+
+    $default  reduce using rule 59 (primaryexpression)
+
+
+State 94
+
+   36 expression: primaryexpression AND primaryexpression .
+
+    $default  reduce using rule 36 (expression)
+
+
+State 95
+
+   54 primaryexpression: Identifier .
+
+    $default  reduce using rule 54 (primaryexpression)
+
+
+State 96
+
+   37 expression: primaryexpression OR primaryexpression .
+
+    $default  reduce using rule 37 (expression)
+
+
+State 97
+
+   38 expression: primaryexpression NE primaryexpression .
+
+    $default  reduce using rule 38 (expression)
+
+
+State 98
+
+   39 expression: primaryexpression LT EQUALS . primaryexpression
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    primaryexpression  go to state 123
+    Identifier         go to state 95
+    number             go to state 44
+
+
+State 99
+
+   40 expression: primaryexpression PLUS primaryexpression .
+
+    $default  reduce using rule 40 (expression)
+
+
+State 100
+
+   41 expression: primaryexpression MINUS primaryexpression .
+
+    $default  reduce using rule 41 (expression)
+
+
+State 101
+
+   42 expression: primaryexpression MUL primaryexpression .
+
+    $default  reduce using rule 42 (expression)
+
+
+State 102
+
+   43 expression: primaryexpression DIV primaryexpression .
+
+    $default  reduce using rule 43 (expression)
+
+
+State 103
+
+   47 expression: primaryexpression DOT Identifier . L_PAREN expression expression_comma R_PAREN
+   48           | primaryexpression DOT Identifier . L_PAREN R_PAREN
+
+    L_PAREN  shift, and go to state 124
+
+
+State 104
+
+   44 expression: primaryexpression L_SQUARE primaryexpression . R_SQUARE
+
+    R_SQUARE  shift, and go to state 125
+
+
+State 105
+
+   50 expression: Identifier L_PAREN R_PAREN .
+
+    $default  reduce using rule 50 (expression)
+
+
+State 106
+
+   49 expression: Identifier L_PAREN expression . expression_comma R_PAREN
+
+    COMMA  shift, and go to state 126
+
+    $default  reduce using rule 35 (expression_comma)
+
+    expression_comma  go to state 127
+
+
+State 107
+
+   26 statement: SYSTEM_PRINT L_PAREN . expression R_PAREN SEMICOLON
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 128
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 108
+
+   29 statement: IF L_PAREN . expression R_PAREN statement_list
+   30          | IF L_PAREN . expression R_PAREN statement_list ELSE statement_list
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 129
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 109
+
+   31 statement: WHILE L_PAREN . expression R_PAREN statement_list
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 130
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 110
+
+   19 statement_list: statement_list . statement
+   25 statement: L_CURLY statement_list . R_CURLY
+
+    SYSTEM_PRINT  shift, and go to state 74
+    IF            shift, and go to state 75
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+    R_CURLY       shift, and go to state 131
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 111
+
+   27 statement: Identifier EQUALS . expression SEMICOLON
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 132
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 112
+
+   32 statement: Identifier L_PAREN . expression expression_comma R_PAREN SEMICOLON
+   33          | Identifier L_PAREN . R_PAREN SEMICOLON
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+    R_PAREN  shift, and go to state 133
+
+    expression         go to state 134
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 113
+
+   28 statement: Identifier L_SQUARE . expression R_SQUARE EQUALS expression SEMICOLON
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 135
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 114
+
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_PAREN expression . R_PAREN
+
+    R_PAREN  shift, and go to state 136
+
+
+State 115
+
+   19 statement_list: statement_list . statement
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_CURLY statement_list . R_CURLY
+
+    SYSTEM_PRINT  shift, and go to state 74
+    IF            shift, and go to state 75
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+    R_CURLY       shift, and go to state 137
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 116
+
+    9 typedeclaration: CLASS Identifier EXTENDS Identifier L_CURLY classtypes methods . R_CURLY
+
+    R_CURLY  shift, and go to state 138
+
+
+State 117
+
+   14 methoddeclaration: PUBLIC type Identifier . L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    L_PAREN  shift, and go to state 139
+
+
+State 118
+
+   21 type: INTEGER L_SQUARE R_SQUARE .
+
+    $default  reduce using rule 21 (type)
+
+
+State 119
+
+   11 classtypes: classtypes type Identifier SEMICOLON .
+
+    $default  reduce using rule 11 (classtypes)
+
+
+State 120
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING . L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    L_SQUARE  shift, and go to state 140
+
+
+State 121
+
+   56 primaryexpression: NEW INTEGER L_SQUARE expression . R_SQUARE
+
+    R_SQUARE  shift, and go to state 141
+
+
+State 122
+
+   57 primaryexpression: NEW Identifier L_PAREN R_PAREN .
+
+    $default  reduce using rule 57 (primaryexpression)
+
+
+State 123
+
+   39 expression: primaryexpression LT EQUALS primaryexpression .
+
+    $default  reduce using rule 39 (expression)
+
+
+State 124
+
+   47 expression: primaryexpression DOT Identifier L_PAREN . expression expression_comma R_PAREN
+   48           | primaryexpression DOT Identifier L_PAREN . R_PAREN
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+    R_PAREN  shift, and go to state 142
+
+    expression         go to state 143
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 125
+
+   44 expression: primaryexpression L_SQUARE primaryexpression R_SQUARE .
+
+    $default  reduce using rule 44 (expression)
+
+
+State 126
+
+   34 expression_comma: COMMA . expression expression_comma
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 144
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 127
+
+   49 expression: Identifier L_PAREN expression expression_comma . R_PAREN
+
+    R_PAREN  shift, and go to state 145
+
+
+State 128
+
+   26 statement: SYSTEM_PRINT L_PAREN expression . R_PAREN SEMICOLON
+
+    R_PAREN  shift, and go to state 146
+
+
+State 129
+
+   29 statement: IF L_PAREN expression . R_PAREN statement_list
+   30          | IF L_PAREN expression . R_PAREN statement_list ELSE statement_list
+
+    R_PAREN  shift, and go to state 147
+
+
+State 130
+
+   31 statement: WHILE L_PAREN expression . R_PAREN statement_list
+
+    R_PAREN  shift, and go to state 148
+
+
+State 131
+
+   25 statement: L_CURLY statement_list R_CURLY .
+
+    $default  reduce using rule 25 (statement)
+
+
+State 132
+
+   27 statement: Identifier EQUALS expression . SEMICOLON
+
+    SEMICOLON  shift, and go to state 149
+
+
+State 133
+
+   33 statement: Identifier L_PAREN R_PAREN . SEMICOLON
+
+    SEMICOLON  shift, and go to state 150
+
+
+State 134
+
+   32 statement: Identifier L_PAREN expression . expression_comma R_PAREN SEMICOLON
+
+    COMMA  shift, and go to state 126
+
+    $default  reduce using rule 35 (expression_comma)
+
+    expression_comma  go to state 151
+
+
+State 135
+
+   28 statement: Identifier L_SQUARE expression . R_SQUARE EQUALS expression SEMICOLON
+
+    R_SQUARE  shift, and go to state 152
+
+
+State 136
+
+   64 macrodefexpression: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_PAREN expression R_PAREN .
+
+    $default  reduce using rule 64 (macrodefexpression)
+
+
+State 137
+
+   62 macrodefstatement: DEFINE Identifier L_PAREN Identifier Identifier_comma R_PAREN L_CURLY statement_list R_CURLY .
+
+    $default  reduce using rule 62 (macrodefstatement)
+
+
+State 138
+
+    9 typedeclaration: CLASS Identifier EXTENDS Identifier L_CURLY classtypes methods R_CURLY .
+
+    $default  reduce using rule 9 (typedeclaration)
+
+
+State 139
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN . method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    INTEGER  shift, and go to state 50
+    BOOLEAN  shift, and go to state 51
+    ID       shift, and go to state 11
+
+    $default  reduce using rule 16 (method_arguments)
+
+    method_arguments  go to state 153
+    type              go to state 154
+    Identifier        go to state 55
+
+
+State 140
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE . R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    R_SQUARE  shift, and go to state 155
+
+
+State 141
+
+   56 primaryexpression: NEW INTEGER L_SQUARE expression R_SQUARE .
+
+    $default  reduce using rule 56 (primaryexpression)
+
+
+State 142
+
+   48 expression: primaryexpression DOT Identifier L_PAREN R_PAREN .
+
+    $default  reduce using rule 48 (expression)
+
+
+State 143
+
+   47 expression: primaryexpression DOT Identifier L_PAREN expression . expression_comma R_PAREN
+
+    COMMA  shift, and go to state 126
+
+    $default  reduce using rule 35 (expression_comma)
+
+    expression_comma  go to state 156
+
+
+State 144
+
+   34 expression_comma: COMMA expression . expression_comma
+
+    COMMA  shift, and go to state 126
+
+    $default  reduce using rule 35 (expression_comma)
+
+    expression_comma  go to state 157
+
+
+State 145
+
+   49 expression: Identifier L_PAREN expression expression_comma R_PAREN .
+
+    $default  reduce using rule 49 (expression)
+
+
+State 146
+
+   26 statement: SYSTEM_PRINT L_PAREN expression R_PAREN . SEMICOLON
+
+    SEMICOLON  shift, and go to state 158
+
+
+State 147
+
+   29 statement: IF L_PAREN expression R_PAREN . statement_list
+   30          | IF L_PAREN expression R_PAREN . statement_list ELSE statement_list
+
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 159
+
+
+State 148
+
+   31 statement: WHILE L_PAREN expression R_PAREN . statement_list
+
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 160
+
+
+State 149
+
+   27 statement: Identifier EQUALS expression SEMICOLON .
+
+    $default  reduce using rule 27 (statement)
+
+
+State 150
+
+   33 statement: Identifier L_PAREN R_PAREN SEMICOLON .
+
+    $default  reduce using rule 33 (statement)
+
+
+State 151
+
+   32 statement: Identifier L_PAREN expression expression_comma . R_PAREN SEMICOLON
+
+    R_PAREN  shift, and go to state 161
+
+
+State 152
+
+   28 statement: Identifier L_SQUARE expression R_SQUARE . EQUALS expression SEMICOLON
+
+    EQUALS  shift, and go to state 162
+
+
+State 153
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments . R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    R_PAREN  shift, and go to state 163
+
+
+State 154
+
+   15 method_arguments: type . Identifier argument_list
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 164
+
+
+State 155
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE . Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 165
+
+
+State 156
+
+   47 expression: primaryexpression DOT Identifier L_PAREN expression expression_comma . R_PAREN
+
+    R_PAREN  shift, and go to state 166
+
+
+State 157
+
+   34 expression_comma: COMMA expression expression_comma .
+
+    $default  reduce using rule 34 (expression_comma)
+
+
+State 158
+
+   26 statement: SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON .
+
+    $default  reduce using rule 26 (statement)
+
+
+State 159
+
+   19 statement_list: statement_list . statement
+   29 statement: IF L_PAREN expression R_PAREN statement_list .
+   30          | IF L_PAREN expression R_PAREN statement_list . ELSE statement_list
+
+    SYSTEM_PRINT  shift, and go to state 74
+    IF            shift, and go to state 75
+    ELSE          shift, and go to state 167
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+
+    SYSTEM_PRINT  [reduce using rule 29 (statement)]
+    IF            [reduce using rule 29 (statement)]
+    ELSE          [reduce using rule 29 (statement)]
+    WHILE         [reduce using rule 29 (statement)]
+    ID            [reduce using rule 29 (statement)]
+    L_CURLY       [reduce using rule 29 (statement)]
+    $default      reduce using rule 29 (statement)
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 160
+
+   19 statement_list: statement_list . statement
+   31 statement: WHILE L_PAREN expression R_PAREN statement_list .
+
+    SYSTEM_PRINT  shift, and go to state 74
+    IF            shift, and go to state 75
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+
+    SYSTEM_PRINT  [reduce using rule 31 (statement)]
+    IF            [reduce using rule 31 (statement)]
+    WHILE         [reduce using rule 31 (statement)]
+    ID            [reduce using rule 31 (statement)]
+    L_CURLY       [reduce using rule 31 (statement)]
+    $default      reduce using rule 31 (statement)
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 161
+
+   32 statement: Identifier L_PAREN expression expression_comma R_PAREN . SEMICOLON
+
+    SEMICOLON  shift, and go to state 168
+
+
+State 162
+
+   28 statement: Identifier L_SQUARE expression R_SQUARE EQUALS . expression SEMICOLON
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 169
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 163
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN . L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    L_CURLY  shift, and go to state 170
+
+
+State 164
+
+   15 method_arguments: type Identifier . argument_list
+
+    COMMA  shift, and go to state 171
+
+    $default  reduce using rule 18 (argument_list)
+
+    argument_list  go to state 172
+
+
+State 165
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier . R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    R_PAREN  shift, and go to state 173
+
+
+State 166
+
+   47 expression: primaryexpression DOT Identifier L_PAREN expression expression_comma R_PAREN .
+
+    $default  reduce using rule 47 (expression)
+
+
+State 167
+
+   30 statement: IF L_PAREN expression R_PAREN statement_list ELSE . statement_list
+
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 174
+
+
+State 168
+
+   32 statement: Identifier L_PAREN expression expression_comma R_PAREN SEMICOLON .
+
+    $default  reduce using rule 32 (statement)
+
+
+State 169
+
+   28 statement: Identifier L_SQUARE expression R_SQUARE EQUALS expression . SEMICOLON
+
+    SEMICOLON  shift, and go to state 175
+
+
+State 170
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY . classtypes statement_list RETURN expression SEMICOLON R_CURLY
+
+    $default  reduce using rule 10 (classtypes)
+
+    classtypes  go to state 176
+
+
+State 171
+
+   17 argument_list: COMMA . type Identifier argument_list
+
+    INTEGER  shift, and go to state 50
+    BOOLEAN  shift, and go to state 51
+    ID       shift, and go to state 11
+
+    type        go to state 177
+    Identifier  go to state 55
+
+
+State 172
+
+   15 method_arguments: type Identifier argument_list .
+
+    $default  reduce using rule 15 (method_arguments)
+
+
+State 173
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN . L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    L_CURLY  shift, and go to state 178
+
+
+State 174
+
+   19 statement_list: statement_list . statement
+   30 statement: IF L_PAREN expression R_PAREN statement_list ELSE statement_list .
+
+    SYSTEM_PRINT  shift, and go to state 74
+    IF            shift, and go to state 75
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+
+    SYSTEM_PRINT  [reduce using rule 30 (statement)]
+    IF            [reduce using rule 30 (statement)]
+    WHILE         [reduce using rule 30 (statement)]
+    ID            [reduce using rule 30 (statement)]
+    L_CURLY       [reduce using rule 30 (statement)]
+    $default      reduce using rule 30 (statement)
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 175
+
+   28 statement: Identifier L_SQUARE expression R_SQUARE EQUALS expression SEMICOLON .
+
+    $default  reduce using rule 28 (statement)
+
+
+State 176
+
+   11 classtypes: classtypes . type Identifier SEMICOLON
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes . statement_list RETURN expression SEMICOLON R_CURLY
+
+    INTEGER  shift, and go to state 50
+    BOOLEAN  shift, and go to state 51
+    ID       shift, and go to state 11
+
+    ID        [reduce using rule 20 (statement_list)]
+    $default  reduce using rule 20 (statement_list)
+
+    statement_list  go to state 179
+    type            go to state 54
+    Identifier      go to state 55
+
+
+State 177
+
+   17 argument_list: COMMA type . Identifier argument_list
+
+    ID  shift, and go to state 11
+
+    Identifier  go to state 180
+
+
+State 178
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY . SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    SYSTEM_PRINT  shift, and go to state 181
+
+
+State 179
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list . RETURN expression SEMICOLON R_CURLY
+   19 statement_list: statement_list . statement
+
+    SYSTEM_PRINT  shift, and go to state 74
+    RETURN        shift, and go to state 182
+    IF            shift, and go to state 75
+    WHILE         shift, and go to state 76
+    ID            shift, and go to state 11
+    L_CURLY       shift, and go to state 77
+
+    statement   go to state 79
+    Identifier  go to state 80
+
+
+State 180
+
+   17 argument_list: COMMA type Identifier . argument_list
+
+    COMMA  shift, and go to state 171
+
+    $default  reduce using rule 18 (argument_list)
+
+    argument_list  go to state 183
+
+
+State 181
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT . L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    L_PAREN  shift, and go to state 184
+
+
+State 182
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN . expression SEMICOLON R_CURLY
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 185
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 183
+
+   17 argument_list: COMMA type Identifier argument_list .
+
+    $default  reduce using rule 17 (argument_list)
+
+
+State 184
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN . expression R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    NOT      shift, and go to state 34
+    TRUE     shift, and go to state 35
+    FALSE    shift, and go to state 36
+    THIS     shift, and go to state 37
+    NEW      shift, and go to state 38
+    ID       shift, and go to state 11
+    NUM      shift, and go to state 39
+    L_PAREN  shift, and go to state 40
+
+    expression         go to state 186
+    primaryexpression  go to state 42
+    Identifier         go to state 43
+    number             go to state 44
+
+
+State 185
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression . SEMICOLON R_CURLY
+
+    SEMICOLON  shift, and go to state 187
+
+
+State 186
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression . R_PAREN SEMICOLON R_CURLY R_CURLY
+
+    R_PAREN  shift, and go to state 188
+
+
+State 187
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON . R_CURLY
+
+    R_CURLY  shift, and go to state 189
+
+
+State 188
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN . SEMICOLON R_CURLY R_CURLY
+
+    SEMICOLON  shift, and go to state 190
+
+
+State 189
+
+   14 methoddeclaration: PUBLIC type Identifier L_PAREN method_arguments R_PAREN L_CURLY classtypes statement_list RETURN expression SEMICOLON R_CURLY .
+
+    $default  reduce using rule 14 (methoddeclaration)
+
+
+State 190
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON . R_CURLY R_CURLY
+
+    R_CURLY  shift, and go to state 191
+
+
+State 191
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY . R_CURLY
+
+    R_CURLY  shift, and go to state 192
+
+
+State 192
+
+    7 mainclass: CLASS Identifier L_CURLY PUBLIC STATIC VOID MAIN L_PAREN STRING L_SQUARE R_SQUARE Identifier R_PAREN L_CURLY SYSTEM_PRINT L_PAREN expression R_PAREN SEMICOLON R_CURLY R_CURLY .
+
+    $default  reduce using rule 7 (mainclass)

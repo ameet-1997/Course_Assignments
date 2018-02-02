@@ -1,0 +1,94 @@
+
+Options: -M 35 
+
+J48 pruned tree
+------------------
+
+odor = p: p (256.0)
+odor = a: e (400.0)
+odor = l: e (400.0)
+odor = n
+|   Stalk-shape = e
+|   |   Spore-print-color = k: e (48.0)
+|   |   Spore-print-color = n: e (52.0)
+|   |   Spore-print-color = u: e (0.0)
+|   |   Spore-print-color = h: e (48.0)
+|   |   Spore-print-color = w
+|   |   |   Gill-size = n
+|   |   |   |   Cap-surface = s: e (0.0)
+|   |   |   |   Cap-surface = y: e (45.0/21.0)
+|   |   |   |   Cap-surface = f: e (40.0/16.0)
+|   |   |   |   Cap-surface = g: p (4.0)
+|   |   |   Gill-size = b: e (240.0)
+|   |   Spore-print-color = r: p (72.0)
+|   |   Spore-print-color = o: e (7.0)
+|   |   Spore-print-color = y: e (4.0)
+|   |   Spore-print-color = b: e (1.0)
+|   Stalk-shape = t: e (2496.0)
+odor = f: p (1952.0)
+odor = c: p (192.0)
+odor = y: p (379.0)
+odor = s: p (359.0)
+odor = m: p (5.0)
+
+Number of Leaves  : 	22
+
+Size of the tree : 	27
+
+
+Time taken to build model: 0.18 seconds
+Time taken to test model on training data: 0.04 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        6963               99.4714 %
+Incorrectly Classified Instances        37                0.5286 %
+Kappa statistic                          0.9894
+Mean absolute error                      0.0059
+Root mean squared error                  0.0545
+Relative absolute error                  1.1944 %
+Root relative squared error             10.9288 %
+Total Number of Instances             7000     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.989    0.000    1.000      0.989    0.994      0.989    1.000     1.000     p
+                 1.000    0.011    0.990      1.000    0.995      0.989    1.000     1.000     e
+Weighted Avg.    0.995    0.006    0.995      0.995    0.995      0.989    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 3219   37 |    a = p
+    0 3744 |    b = e
+
+
+=== Error on test data ===
+
+Correctly Classified Instances        1117               99.3772 %
+Incorrectly Classified Instances         7                0.6228 %
+Kappa statistic                          0.9872
+Mean absolute error                      0.0033
+Root mean squared error                  0.0421
+Relative absolute error                  0.6563 %
+Root relative squared error              8.2976 %
+Total Number of Instances             1124     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.989    0.000    1.000      0.989    0.995      0.987    1.000     1.000     p
+                 1.000    0.011    0.985      1.000    0.993      0.987    1.000     1.000     e
+Weighted Avg.    0.994    0.004    0.994      0.994    0.994      0.987    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 653   7 |   a = p
+   0 464 |   b = e
+
