@@ -1,0 +1,10 @@
+Without any cores, a matrices of order 500X500 took 0.4022 seconds
+With 2 threads, it took 0.396 seconds 
+With 3 threads, it took 0.4060 seconds
+4 - 0.398
+5 - 0.4034
+6 - 0.404
+7 - 0.400
+8 - 0.397
+20 - 0.384
+30 - 0.386

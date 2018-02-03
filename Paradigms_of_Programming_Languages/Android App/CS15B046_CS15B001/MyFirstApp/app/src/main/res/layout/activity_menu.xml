@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.example.jahnvi.myfirstapp.MainActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/videoplayer" />
+
+        <EditText
+            android:id="@+id/num_input"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/submit_text_view_id"/>
+
+        <TextView
+            android:id="@+id/submit_text_view_id"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/symbol"
+            android:text="Enter the maximum image number N:" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/submit_text_view_id"
+            android:layout_toRightOf="@+id/num_input"
+            android:background="@drawable/submit"/>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="com.example.jahnvi.myfirstapp.MainActivity">
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnPlayPause"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/progressText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/pause" />
+
+        <Button
+            android:id="@+id/btnFastForward"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/progressText"
+            android:layout_toRightOf="@+id/btnPlayPause"
+            android:background="@drawable/forward" />
+
+        <Button
+            android:id="@+id/btnFastBackward"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/progressText"
+            android:layout_toLeftOf="@+id/btnPlayPause"
+            android:background="@drawable/backward" />
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/seekBar1"
+            android:textColor="@color/colorPrimary" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
+-->

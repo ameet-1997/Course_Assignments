@@ -1,0 +1,11 @@
+-	When reading from a file, if we create a file pointer before and then fork the parent process (While reading a file),
+	and we print the file, the file gets printed as is. This means that the same file pointer is being used
+	for both the parent and child pointer
+	But this is not the case with variables. If a variable is created before the fork statement, two copies are made
+	for parent and child processes
+-	When the file pointer is opened after forking, the same content in the file gets printed twice, and in order.
+	This means that the processes are getting executed one after another and that different file pointers are being used for 
+	child and parent processes. But the order in which the content is being printed is the same.
+-	When an fflush statement is written in the while loop, the file output is printed twice, but this time it is jumbled up
+	This is because, the buffer is being flushed when context switch happens
+-	If write pointer is defined after
